@@ -59,6 +59,17 @@ You can also copy file from the container back to the host.
 docker cp name_of_container:/root/[path_to_file] path/of/host/directory 
 ```
 
+## Inside the containers
+To get into the container, simply run
+```bash
+docker exec -it name_of_container /bin/bash
+```
+DO NOT FORGET the '/bin/bash', otherwise you can't enter the container.
+To exit the container just run
+```bash
+exit
+```
+
 ## Cleanup
 You also run the cleanup script. It will remove all the docker containers that were created during the script. Please ensure you save your work to the host before running this, as this will irreversably remove the containers.
 ```bash
