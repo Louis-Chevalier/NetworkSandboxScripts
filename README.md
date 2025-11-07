@@ -1,8 +1,5 @@
 # NetworkSandboxScripts
-Scripts made to easily deploy containers in order to test out code C code for Network Projects. Made to imitate the COE768 lab configuration and allow students to test at home
-
-
-# Docker Network Automation Script
+Scripts made to easily deploy _blank_ containers in order to test out C code for Network Projects. Made to imitate the COE768 lab configuration and allow students to test there own network code at home, instead of having to find time to travel to the actual lab. 
 
 ## Overview
 This project provides a simple shell script to automatically **build a Fedora-based Docker image** and create a network of containers for testing distributed systems, peer-to-peer setups, or networking labs.
@@ -27,20 +24,24 @@ Before using this script, ensure you have:
   sudo pacman -S docker    # Arch Linux
   sudo systemctl start docker
   sudo systemctl enable docker
-
+  ```
 
 ## Usage
 
-Make the sript executable
+### Installation
+Clone the github project onto your computer
 ```bash
+git clone https://github.com/Louis-Chevalier/NetworkSandboxScripts.git
+```
+cd into the git directory and then make the sript executable
+```bash
+cd NetworkSandboxScripts/
 chmod +x createProjectContainers.sh
 ```
-
 Then run the script
 ```bash 
 ./createProjectContainers.sh
 ```
-
 Ensure all of the servers are up
 ```bash
 docker ps
@@ -59,7 +60,7 @@ You can also copy file from the container back to the host.
 docker cp name_of_container:/root/[path_to_file] path/of/host/directory 
 ```
 
-## Inside the containers
+### Inside the containers
 To get into the container, simply run
 ```bash
 docker exec -it name_of_container /bin/bash
@@ -68,6 +69,11 @@ DO NOT FORGET the '/bin/bash', otherwise you can't enter the container.
 To exit the container just run
 ```bash
 exit
+```
+### Checking the IP address of a container
+Lastly, you may need the IP address of a container, in which case you just need to run
+```bash
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' name_of_container
 ```
 
 ## Cleanup
@@ -81,12 +87,6 @@ If ever need to put the containers up again, just run the main script again
 ./createProjectContainers.sh
 ```
 
-## Checking the IP address of a container
-Lastly, you may need the IP address of a container, in which case you just need to run
-```bash
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' name_of_container
-```
-
-# Note on Wireshark
+## Note on Wireshark
 When testing this setup and viewing the packets via wireshark, the packets did not appear under the regular `docker0` network. Instead, the packets could be viewed under a differently named container.
 You may need ping one of the containers from another container. This way you can see which network in Wireshark suddendly spikes.
