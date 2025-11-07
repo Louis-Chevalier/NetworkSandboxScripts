@@ -65,6 +65,11 @@ You also run the cleanup script. It will remove all the docker containers that w
 ./cleanup
 ```
 
+If ever need to put the containers up again, just run the main script again
+```bash 
+./createProjectContainers.sh
+```
+
 ## Checking the IP address of a container
 Lastly, you may need the IP address of a container, in which case you just need to run
 ```bash
