@@ -21,9 +21,9 @@ sudo docker run -itd --name peer1 --network Erminig fedora
 sudo docker run -itd --name peer2 --network Erminig fedora
 
 echo "Created 3 Containers below are their names:"
-echo "\tindexServer"
-echo "\tpeer1"
-echo "\tpeer2"
+echo "indexServer"
+echo "peer1"
+echo "peer2"
 
 echo ""
 
@@ -56,8 +56,8 @@ else
 fi
 
 echo ""
-echo "examples of copying files to the server container"
-echo "sudo docker cp ~/docker_network/lab1 server:/root/lab1"
+echo "Copy files or folder to a container:"
+echo "sudo docker cp path/to/folder name_of_container:/root/"
 
-echo "\nexample of finding the ip address of the server container"
-echo "docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' server"
+echo "Display the IP address of a container:"
+echo "docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' name_of_container"
